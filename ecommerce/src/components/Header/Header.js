@@ -13,7 +13,7 @@ const Header = props => {
             <Nav.Link href="#about" >ABOUT</Nav.Link>
           </Nav>
           <div className='me-2'> 
-          <HeaderCartButton/>
+          <HeaderCartButton onClick={props.onClick} />
           <span className='ms-1'>0</span>
           </div>
       </Navbar>
