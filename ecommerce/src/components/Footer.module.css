@@ -1,0 +1,22 @@
+.footerBanner {
+    display: flex;
+    margin-top: 40px;
+    padding: 20px;
+    background: #56CCF2;
+}
+
+.footerHeading {
+    text-align: center;
+    color: white;
+    width: 50%;
+    font-size: 50px;
+    font-weight: bold;
+    margin: 0 60px;
+}
+
+.icons {
+    width: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
