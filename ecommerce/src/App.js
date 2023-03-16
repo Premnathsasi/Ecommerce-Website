@@ -3,6 +3,7 @@ import Footer from "./components/Footer";
 import Header from "./components/Header/Header";
 import Store from "./components/Store";
 import Cart from "./components/Cart/Cart";
+import CartProvider from "./components/Context/CartProvider";
 
 
 
@@ -18,12 +19,12 @@ function App() {
   };
 
   return (
-    <React.Fragment>
+    <CartProvider>
       {cartIsShown && <Cart onClick={hideCart} />}
     <Header onClick={showCart} />
     <Store />
     <Footer/>
-    </React.Fragment>
+    </CartProvider>
   );
 }
 

@@ -12,9 +12,8 @@ const Header = props => {
             <Nav.Link href="#store" className='me-5'>STORE</Nav.Link>
             <Nav.Link href="#about" >ABOUT</Nav.Link>
           </Nav>
-          <div className='me-2'> 
+          <div className='me-3'> 
           <HeaderCartButton onClick={props.onClick} />
-          <span className='ms-1'>0</span>
           </div>
       </Navbar>
 
