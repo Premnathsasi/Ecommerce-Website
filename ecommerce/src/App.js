@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import {Routes, Route} from 'react-router-dom';
 import Footer from "./components/Footer";
+import Home from "./components/Home";
 import Header from "./components/Header/Header";
 import About from "./components/About";
 import Store from "./components/Store";
@@ -25,6 +26,7 @@ function App() {
       {cartIsShown && <Cart onClick={hideCart} />}
     <Header onClick={showCart} />
     <Routes>
+      <Route path="/home" element={<Home />} />
       <Route path="/" element={<Store />} />
       <Route path="/about" element={<About />} />
     </Routes>

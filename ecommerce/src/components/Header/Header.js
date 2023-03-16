@@ -10,7 +10,7 @@ const Header = props => {
        <React.Fragment>
          <Navbar bg="dark" variant="dark" className='text-white' >
           <Nav className="h5 m-auto ">
-          <NavLink to="" className={({isActive}) => isActive ? classes.active : classes.normal}>HOME</NavLink>
+          <NavLink to="/home" className={({isActive}) => isActive ? classes.active : classes.normal}>HOME</NavLink>
             <NavLink to="/" className={({isActive}) => isActive ? classes.active : classes.normal} >STORE</NavLink>
             <NavLink to="/about" className={({isActive}) => isActive ? classes.active : classes.normal}>ABOUT</NavLink>
           </Nav>
