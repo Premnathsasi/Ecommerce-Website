@@ -1,43 +1,23 @@
-import React, { Fragment, useState } from "react";
+
+import React, {Fragment ,useContext} from "react";
+import CartContext from "../Context/CartContext";
 import "./Cart.css";
 import { Button, CloseButton } from "react-bootstrap";
 
-const cartElements = [
-  {
-    id:'a1',
-    title: "Colors",
-    price: 100,
-    imageUrl: "https://prasadyash2411.github.io/ecom-website/img/Album%201.png",
-    quantity: 2,
-  },
-  {
-    id:'a2',
-    title: "Black and white Colors",
-    price: 50,
-    imageUrl: "https://prasadyash2411.github.io/ecom-website/img/Album%202.png",
-    quantity: 3,
-  },
-  {
-    id:'a3',
-    title: "Yellow and Black Colors",
-    price: 70,
-    imageUrl: "https://prasadyash2411.github.io/ecom-website/img/Album%203.png",
-    quantity: 1,
-  },
-];
 
 const Cart = (props) => {
 
-    const [cartItems, setCartItems] = useState(cartElements);
+  const cartCntx = useContext(CartContext);
 
     const removeCartItem = (item) => {
         const itemId = item.target.id;
-        setCartItems((prev) => {
-            return prev.filter((list) => list.id !== itemId)
-        })
+        cartCntx.removeItem(itemId)
     }
+    const purchaseClickHandler = () => {
+      alert("Thank you for shoping with us");
+    };
 
-  const cartList = cartItems.map((item) => {
+  const cartList = cartCntx.items.map((item) => {
     return (
       <li key={item.id}>
         <div className="cart-row fw-bold">
@@ -68,11 +48,13 @@ const Cart = (props) => {
         <div> {cartList}</div>
         <div className=" fw-bolder position-relative m-5">
           <span className=" fs-2 text-center">
-            <strong className=" ">Total</strong>
-            <span className="m-5 fw-normal">$39.99</span>
+            <strong className="fw-bolder ">Total</strong>
+            <span className="m-5 fw-bold">{`$${cartCntx.items.reduce((total, item) => {
+          return total + item.price * item.quantity;
+        }, 0)}`}</span>
           </span>
           <div className="text-center ">
-          <Button variant="primary" className=" btn-lg mt-4   ">PURCHASE</Button> 
+          <Button variant="primary" className=" btn-lg mt-4" onClick={purchaseClickHandler}>PURCHASE</Button> 
           </div>
                   
         </div>

@@ -1,14 +1,15 @@
 .cart {
     margin: 0px;
     position: fixed;
-    top: 50px;
+    top: 20px;
     height: 90%;
     right:0;
     background-color: rgb(255, 255, 255);
     border: 1px solid rgb(1, 32, 116);
     border-radius: 20px;
     min-height: 50vh;
-    z-index: 50;
+    z-index: 1;
+    overflow: scroll;
 }
 
 .cart h1 {

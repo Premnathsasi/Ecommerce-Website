@@ -12,6 +12,13 @@ const cartReducer = (state, action) => {
                 items: updatedItems,
             };
         }
+
+        if (action.type === 'REMOVE') {
+            const updatedItems = state.items.filter(item => item.id !== action.id);
+            return {
+                items: updatedItems
+            }
+        }
 };
 
 const CartProvider = props => {
@@ -21,7 +28,9 @@ const CartProvider = props => {
         dispatchCartAction({type:'ADD', item: item})
     };
     
-    const removeItemHandler = id => {};
+    const removeItemHandler = id => {
+        dispatchCartAction({type: 'REMOVE', id: id})
+    };
     
     const cartContext = {
         items:cartState.items,
