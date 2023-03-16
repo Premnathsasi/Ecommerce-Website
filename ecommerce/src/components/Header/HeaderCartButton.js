@@ -11,7 +11,7 @@ const HeaderCartButton = (props) => {
 
   return (
     <div>
-      <div className="ms-5">{noOfItems}</div>
+      <div className="ms-5 fw-bold ">{noOfItems}</div>
 <Button variant="dark" className=" border-primary" onClick={props.onClick}>Cart</Button>
 
     </div>

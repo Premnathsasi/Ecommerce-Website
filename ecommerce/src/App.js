@@ -1,6 +1,8 @@
 import React, {useState} from "react";
+import {Routes, Route} from 'react-router-dom';
 import Footer from "./components/Footer";
 import Header from "./components/Header/Header";
+import About from "./components/About";
 import Store from "./components/Store";
 import Cart from "./components/Cart/Cart";
 import CartProvider from "./components/Context/CartProvider";
@@ -22,7 +24,10 @@ function App() {
     <CartProvider>
       {cartIsShown && <Cart onClick={hideCart} />}
     <Header onClick={showCart} />
-    <Store />
+    <Routes>
+      <Route path="/" element={<Store />} />
+      <Route path="/about" element={<About />} />
+    </Routes>
     <Footer/>
     </CartProvider>
   );

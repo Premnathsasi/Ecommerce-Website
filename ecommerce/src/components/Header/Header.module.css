@@ -1,0 +1,20 @@
+.heading {
+    width: 100%;
+    background-color: rgb(101, 159, 235);
+    color: white;
+    text-align: center;
+    font-size: 6rem;
+    font-weight: bolder;
+    height: 10rem;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+a.normal {
+    color: #fff;
+    margin: 0 1rem;
+    text-decoration: none;
+}
+
+a.active {
+    text-decoration: underline;
+}
