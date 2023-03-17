@@ -3,11 +3,12 @@
     background-color: rgb(101, 159, 235);
     color: white;
     text-align: center;
-    font-size: 6rem;
     font-weight: bolder;
-    height: 10rem;
     font-family: 'Climate Crisis', cursive;
     font-weight: 100;
+    padding-top:20px;
+    font-size: 4rem;
+    padding: 2rem;
 }
 
 a.normal {
