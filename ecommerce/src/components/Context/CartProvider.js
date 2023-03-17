@@ -7,7 +7,15 @@ const defaultState = {
 
 const cartReducer = (state, action) => {
         if (action.type === 'ADD') {
-            const updatedItems = state.items.concat(action.item);
+            const existingCartItem = state.items.find(item =>  {if (item.id === action.item.id) return true;
+            return false
+        } );
+            let updatedItems;
+           if (existingCartItem) {
+            
+             updatedItems =  [...state.items.filter(el => el.id !== action.item.id), action.item]
+           }else {
+             updatedItems = state.items.concat(action.item);};
             return {
                 items: updatedItems,
             };
