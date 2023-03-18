@@ -1,10 +1,14 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useContext } from "react";
+import AuthContext from "../../store/AuthContext";
 
 import classes from "./AuthForm.module.css";
 
 const AuthForm = () => {
   const [isLogin, setIsLogin] = useState(true);
   const [isLoading, setisLoading] = useState(false);
+
+  const authCtx = useContext(AuthContext)
+
   const emailInput = useRef();
   const passwordInput = useRef();
   const submitHandler = async function(e) {
@@ -39,7 +43,7 @@ const AuthForm = () => {
           throw new Error(errMsg)
     }
     const data = await response.json();
-    console.log(data)
+    authCtx.logIn(data.idToken)
     } catch(error) {
       alert(error.message)
     }
