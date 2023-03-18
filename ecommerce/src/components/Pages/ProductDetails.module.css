@@ -1,0 +1,39 @@
+.sections {
+  display: inline-block;
+    margin: 60px;
+  }
+  .details {
+    
+    text-align: center;
+  }
+  .img {
+    transition: transform 0.2s;
+    float:right
+  }
+  .img:hover {
+    transform: scale(1.2);
+  }
+  .price {
+    color: #00adb5;
+    font-size: 20px;
+    border: 2px solid #00adb5;
+    padding: 5px 10px;
+    background-color: #eeeeee;
+    display: block;
+  }
+  .rating {
+    border-radius: 20px;
+    padding: 8px 16px;
+    background-color: #00adb5;
+    margin-bottom: 20px;
+    font-weight: bold;
+  }
+ 
+  .products {
+   text-align: left;
+  }
+
+ .reviews {
+  display: flex;
+  justify-content: space-around;
+ }
