@@ -15,21 +15,21 @@ const Header = props => {
 
   const logOutHandler= ()=> {
     authCtx.logOut();
-    navigate('/')
+    navigate('/auth')
 
   }
     return (
        <React.Fragment>
-         <Navbar bg="dark" variant="dark" className='text-white' >
-          <Nav className="h5 m-auto ">
+         <Navbar bg="dark" variant="dark" className='text-white position-relative p-3' >
+          <Nav className="h5 m-auto container d-flex justify-content-center ">
             <NavLink to="/" className={({isActive}) => isActive ? classes.active : classes.normal}>HOME</NavLink>
             {isLoggedIn && <NavLink to="/store" className={({isActive}) => isActive ? classes.active : classes.normal} >STORE</NavLink>}
             <NavLink to="/about" className={({isActive}) => isActive ? classes.active : classes.normal}>ABOUT</NavLink>
             {isLoggedIn && <NavLink to="/contact" className={({isActive}) => isActive ? classes.active : classes.normal}>CONTACT</NavLink>}
              {!isLoggedIn && <NavLink to="/auth" className={({isActive}) => isActive ? classes.active : classes.normal}>LOGIN</NavLink>}
-             {isLoggedIn && <Button className='ms-5' onClick={logOutHandler}>Logout</Button>}
+             {isLoggedIn && <Button className=' position-absolute bottom-0 start-0' onClick={logOutHandler}>Logout</Button>}
           </Nav>
-          <div className='me-3'> 
+          <div className='me-3 position-absolute bottom-0 end-0'> 
           {isLoggedIn && <HeaderCartButton onClick={props.onClick} />}
           </div>
       </Navbar>

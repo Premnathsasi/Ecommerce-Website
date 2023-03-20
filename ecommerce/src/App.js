@@ -26,7 +26,7 @@ function App() {
 
   return (
       <CartProvider>
-        {cartIsShown &&  <Cart onClick={hideCart} />}
+        {cartIsShown && authCtx.isLoggedIn &&  <Cart onClick={hideCart} />}
         <Header onClick={showCart} />
         <Routes>
           <Route path="/" element={<Home />} />
@@ -35,7 +35,7 @@ function App() {
           <Route path="/contact" element={<ContactPage />} />
           {!authCtx.isLoggedIn && <Route path="/auth" element={<AuthPage />} />}
           <Route path="/products/:productId" element={<ProductDetails/>} />
-          <Route path='*' element={<Navigate to="/" />}/>
+          <Route path='*' element={<Navigate to="/auth" />}/>
         </Routes>
         <Footer />
       </CartProvider>

@@ -1,4 +1,3 @@
-import { Button } from "react-bootstrap";
 import {useContext} from 'react';
 import CartContext from "../Context/CartContext";
 
@@ -11,9 +10,9 @@ const HeaderCartButton = (props) => {
 
   return (
     <div>
-      <div className="ms-5 fw-bold ">{noOfItems}</div>
-<Button variant="dark" className=" border-primary" onClick={props.onClick}>Cart</Button>
-
+      <button type="button" class="btn btn-primary position-relative"  onClick={props.onClick}>
+  Cart <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary">{noOfItems}</span>
+</button>
     </div>
     
   );

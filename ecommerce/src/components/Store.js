@@ -63,6 +63,7 @@ const Store = (props) => {
 
   return (
     <React.Fragment>
+       <h1 className="text-center"  style={{fontFamily: 'Climate Crisis'}}>Store</h1>
       <div className={classes.container}>
         <div className={classes.product}>{listItems}</div>
       </div>

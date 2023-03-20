@@ -4,7 +4,7 @@ const About = () => {
   return (
     <React.Fragment>
     <div className="ms-5 me-5 fst-italic"  >
-      <h1 className="text-center fw-bolder">About Us</h1>
+      <h1 className="text-center pb-2"  style={{fontFamily: 'Climate Crisis'}}>About Us</h1>
       <div className="d-flex">
         <img className="rounded-circle"
           src="https://cdn.w600.comps.canstockphoto.com/abstract-grunge-music-vector-clipart_csp4735150.jpg" height={250}
