@@ -37,7 +37,8 @@ const AuthForm = () => {
           throw new Error(errMsg)
     }
     const data = await response.json();
-    authCtx.logIn(data.idToken)
+    authCtx.logIn(data.idToken);
+    localStorage.setItem('token', JSON.stringify(data))
     navigate('/store')
     } catch(error) {
       alert(error.message)

@@ -10,8 +10,8 @@ const HeaderCartButton = (props) => {
 
   return (
     <div>
-      <button type="button" class="btn btn-primary position-relative"  onClick={props.onClick}>
-  Cart <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary">{noOfItems}</span>
+      <button type="button" className="btn btn-primary position-relative"  onClick={props.onClick}>
+  Cart <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary">{noOfItems}</span>
 </button>
     </div>
     

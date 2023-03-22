@@ -1,53 +1,68 @@
-import React, { useReducer } from "react";
+import React, { useEffect, useState } from "react";
 import CartContext from "./CartContext";
 
-const defaultState = {
-  items: [],
-};
 
-const cartReducer = (state, action) => {
-  if (action.type === "ADD") {
-    const existingCartItem = state.items.find((item) => {
-      if (item.id === action.item.id) return true;
-      return false;
-    });
-    let updatedItems;
-    if (existingCartItem) {
-      updatedItems = [
-        ...state.items.filter((el) => el.id !== action.item.id),
-        action.item,
-      ];
-    } else {
-      updatedItems = state.items.concat(action.item);
+const CartContextProvider = (props) => {
+
+  let userEmail;
+  if (localStorage.getItem('token')) {
+    userEmail = JSON.parse(localStorage.getItem('token')).email;
+    userEmail = userEmail.replace(/[@.]/g, '');
+  };
+  
+  const [cartItems, setCartItems] = useState([]);
+
+  useEffect(()=>{
+    const loadItemsHandler = async() => {
+      const crudURL = `https://crudcrud.com/api/892fb8ad6372454dbaaaa710761430dd/${userEmail}`;
+      try {
+        const response = await fetch(crudURL)
+        const data = await response.json();
+        
+        if(response.ok) {
+          let refreshItem = [];
+          data.forEach((item) => {
+          
+            refreshItem.push(item)
+          });
+          setCartItems(refreshItem)
+        }
+      
+      } catch (error) {
+        console.log(error);
+      }
     }
-    return {
-      items: updatedItems,
-    };
-  }
-
-  if (action.type === "REMOVE") {
-    const updatedItems = state.items.filter((item) => item.id !== action.id);
-    return {
-      items: updatedItems,
-    };
-  }
-};
-
-const CartProvider = (props) => {
-  const [cartState, dispatchCartAction] = useReducer(cartReducer, defaultState);
+    loadItemsHandler();
+  },[userEmail]);
 
   const addItemToCartHandler = (item) => {
-    dispatchCartAction({ type: "ADD", item: item });
-  };
+    const isThere = cartItems.find((element) => {
+      if (element.id === item.id) return true;
+      return false;
+    });
+    if (isThere) {
+      item.quantity += 1;
+      alert("Item is already in the cart");
+    } else {
+      setCartItems((olditems) => [...olditems, item]);
+    }
+  }
+  //   setCartItems(item);
+  // };
 
-  const removeItemHandler = (id) => {
-    dispatchCartAction({ type: "REMOVE", id: id });
+  const removeItemFromCartHandler = (itemId) => {
+    setCartItems((olditems) => olditems.filter((item) => item.id !== itemId));  };
+  //   setCartItems(itemId)
+  // }
+  const removeAllFromCartHandler = () => {
+    setCartItems([]);
   };
-
+  
   const cartContext = {
-    items: cartState.items,
+    items: cartItems,
     addItem: addItemToCartHandler,
-    removeItem: removeItemHandler,
+    removeItem: removeItemFromCartHandler,
+    emptyCart: removeAllFromCartHandler,
   };
 
   return (
@@ -57,4 +72,4 @@ const CartProvider = (props) => {
   );
 };
 
-export default CartProvider;
+export default CartContextProvider;

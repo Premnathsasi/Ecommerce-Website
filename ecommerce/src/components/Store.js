@@ -37,10 +37,43 @@ const productsArr = [
 
 const Store = (props) => {
   const cartCtx = useContext(CartContext);
+
+  let userEmail;
+  if (localStorage.getItem('token')) {
+    userEmail = JSON.parse(localStorage.getItem('token')).email;
+    userEmail = userEmail.replace(/[@.]/g, '');
+  }
+
   const submitHandler = (event) => {
     const itemId = event.target.id;
-    cartCtx.addItem(productsArr.filter((item) => item.id === itemId)[0]);
+    const item = (productsArr.filter((item) => item.id === itemId)[0]);
+    postToCrud(item)
+    cartCtx.addItem(item)
   };
+
+  const postToCrud = async (item) => {
+    const url = `https://crudcrud.com/api/892fb8ad6372454dbaaaa710761430dd/${userEmail}`;
+    try {
+      const response = await fetch(url , {
+        method: "POST",
+        body: JSON.stringify({
+          title: item.title,
+          price: item.price,
+          imageUrl: item.imageUrl,
+          quantity: item.quantity,
+          id:item.id
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const data = await response.json();
+      console.log(data._id)
+    } catch(error) {
+      console.log(error)
+    }
+  }
+
 
   const listItems = productsArr.map((item) => {
     return (
@@ -60,6 +93,8 @@ const Store = (props) => {
       </div>
     );
   });
+
+
 
   return (
     <React.Fragment>
