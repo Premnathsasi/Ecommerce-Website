@@ -1,0 +1,54 @@
+.cardBox {
+  position: relative;
+    margin: 6rem auto;
+    padding: 1rem;
+    width: 100%;
+}
+
+label {
+    font-weight: bold;
+    color: black;
+    margin-bottom: 0.5rem;
+  }
+  
+input {
+    font: inherit;
+    width:18%;
+    border: 1px solid #ccc;
+    padding: 0.15rem;
+    margin-bottom: 0.5rem;
+    margin-right: 1.5rem;
+   
+  }
+  
+input:focus {
+    outline: none;
+    border-color: #4f005f;
+  }
+  
+ #l, #m, #s {
+    width: 5%;
+   margin-right: 3rem;
+   margin-top: 1rem;
+  }
+  button {
+    font: inherit;
+    border: 1px solid #28005f;
+    background: #130241;
+    color: white;
+    padding: 0.75rem 1rem;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+  
+  button:hover,
+  button:active {
+    background: #7355b5;
+    border-color: #7355b5;
+  }
+
+  #btn {
+    position: absolute;
+    left: 70%;
+    bottom: 5px;
+  }
