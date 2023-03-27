@@ -3,17 +3,19 @@
     width: 95%;
     max-width: 25rem;
     border-radius: 6px;
-    background-color: #188ae0;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+    background-color: #022b3d;
+    box-shadow: 0 5px 18px 15px rgba(0, 0, 0, 0.2);
     padding: 1rem;
     text-align: center;
     color: #fff;
     padding-bottom: 3rem;
   }
+
   
   .auth h1 {
     text-align: center;
-    color: white;
+    color: rgb(255, 255, 255);
+    font-family: Georgia, 'Times New Roman', Times, serif;
   }
   
   .control {
@@ -22,7 +24,7 @@
   
   .control label {
     display: block;
-    color: white;
+    color: rgb(255, 255, 255);
     font-weight: bold;
     margin-bottom: 0.5rem;
   }
@@ -49,8 +51,8 @@
     cursor: pointer;
     font: inherit;
     color: white;
-    background-color: #02243e;
-    border: 1px solid #02243e;
+    background-color: #147bc9;
+    border: 1px solid #147bc9;
     border-radius: 4px;
     padding: 0.5rem 2.5rem;
   }

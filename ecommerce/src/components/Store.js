@@ -47,31 +47,57 @@ const Store = (props) => {
   const submitHandler = (event) => {
     const itemId = event.target.id;
     const item = (productsArr.filter((item) => item.id === itemId)[0]);
-    postToCrud(item)
-    cartCtx.addItem(item)
+    postToCrud(item);
   };
 
   const postToCrud = async (item) => {
-    const url = `https://crudcrud.com/api/892fb8ad6372454dbaaaa710761430dd/${userEmail}`;
-    try {
-      const response = await fetch(url , {
-        method: "POST",
-        body: JSON.stringify({
-          title: item.title,
-          price: item.price,
-          imageUrl: item.imageUrl,
-          quantity: item.quantity,
-          id:item.id
-        }),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      const data = await response.json();
-      console.log(data._id)
-    } catch(error) {
-      console.log(error)
+    const url = `https://crudcrud.com/api/93d06ce5cbaa4585ba29b077417bf667/${userEmail}`;
+    let updatedItem = [...cartCtx.items];
+    const existingIndex = cartCtx.items.findIndex((it) => it.title === item.title);
+    if (existingIndex === -1) {
+      try {
+        const response = await fetch(url , {
+          method: "POST",
+          body: JSON.stringify({
+            title: item.title,
+            price: item.price,
+            imageUrl: item.imageUrl,
+            quantity: item.quantity,
+            id:item.id
+          }),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+        const data = await response.json();
+        console.log(data._id)
+        cartCtx.addItem(data);
+      } catch(error) {
+        console.log(error)
+      }
+    } else {
+      let newQuantity= (updatedItem[existingIndex].quantity+=1);
+      try {
+        const response = await fetch(`${url}/${updatedItem[existingIndex]._id}` , {
+          method: "PUT",
+          body: JSON.stringify({
+            title: item.title,
+            price: item.price,
+            imageUrl: item.imageUrl,
+            quantity: newQuantity,
+            id:item.id
+          }),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+        const data = await response.json();
+        cartCtx.items(data)
+      } catch(error) {
+        console.log(error)
+      }
     }
+   
   }
 
 

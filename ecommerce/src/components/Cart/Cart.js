@@ -1,4 +1,4 @@
-import React, { Fragment, useContext  } from "react";
+import React, { Fragment, useContext} from "react";
 import CartContext from "../Context/CartContext";
 import "./Cart.css";
 import { Button, CloseButton } from "react-bootstrap";
@@ -14,23 +14,46 @@ const Cart = (props) => {
   const removeCartItem = async (event) => {
     const itemID = event.target.id;
     let updatedItem = [...cartCntx.items];
-    cartCntx.removeItem(itemID);
+    // cartCntx.removeItem(itemID);
 
-    const cartItemIndex = updatedItem.findIndex(
-      (item) => item.id === itemID
-    );
+    const cartItemIndex = updatedItem.findIndex((item) => item.id === itemID);
 
     if (updatedItem[cartItemIndex].quantity === 1) {
       try {
         await fetch(
-          `https://crudcrud.com/api/892fb8ad6372454dbaaaa710761430dd/${userEmail}/${updatedItem[cartItemIndex]._id}`,
+          `https://crudcrud.com/api/93d06ce5cbaa4585ba29b077417bf667/${userEmail}/${updatedItem[cartItemIndex]._id}`,
           {
             method: "DELETE",
           }
         );
-      
+        updatedItem = updatedItem.filter((item) => item.id !== itemID )
+        cartCntx.removeItem(updatedItem);
       } catch (err) {
         console.log(err.message);
+      }
+    } else {
+      try {
+         await fetch(
+          `https://crudcrud.com/api/93d06ce5cbaa4585ba29b077417bf667/${userEmail}/${updatedItem[cartItemIndex]._id}`,
+          {
+            method: "PUT",
+            body: JSON.stringify({
+              title: updatedItem[cartItemIndex].title,
+              price: updatedItem[cartItemIndex].price,
+              imageUrl: updatedItem[cartItemIndex].imageUrl,
+              quantity: updatedItem[cartItemIndex].quantity -1,
+              id: updatedItem[cartItemIndex].id,
+            }),
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+        updatedItem[cartItemIndex].quantity -= 1;
+        cartCntx.removeItem(updatedItem)
+
+      } catch (error) {
+        console.log(error);
       }
     }
   };
@@ -40,7 +63,7 @@ const Cart = (props) => {
     cartCntx.items.forEach(async (item) => {
       try {
         await fetch(
-          `https://crudcrud.com/api/892fb8ad6372454dbaaaa710761430dd/${userEmail}/${item._id}`,
+          `https://crudcrud.com/api/93d06ce5cbaa4585ba29b077417bf667/${userEmail}/${item._id}`,
           {
             method: "DELETE",
           }
@@ -62,12 +85,8 @@ const Cart = (props) => {
           </span>
           <span className="cart-price cart-column fw-bold">${item.price}</span>
           <span className="cart-quantity cart-column">
-          <input type='number' defaultValue={item.quantity}></input>
-            <Button
-              variant="danger"
-              onClick={removeCartItem}
-              id={item.id}
-            >
+            <span className="cart-quantity">{item.quantity}</span>
+            <Button variant="danger" onClick={removeCartItem} id={item.id}>
               Remove
             </Button>
           </span>

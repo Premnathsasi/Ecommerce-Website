@@ -14,7 +14,7 @@ const CartContextProvider = (props) => {
 
   useEffect(()=>{
     const loadItemsHandler = async() => {
-      const crudURL = `https://crudcrud.com/api/892fb8ad6372454dbaaaa710761430dd/${userEmail}`;
+      const crudURL = `https://crudcrud.com/api/93d06ce5cbaa4585ba29b077417bf667/${userEmail}`;
       try {
         const response = await fetch(crudURL)
         const data = await response.json();
@@ -51,9 +51,9 @@ const CartContextProvider = (props) => {
   // };
 
   const removeItemFromCartHandler = (itemId) => {
-    setCartItems((olditems) => olditems.filter((item) => item.id !== itemId));  };
-  //   setCartItems(itemId)
-  // }
+    // setCartItems((olditems) => olditems.filter((item) => item.id !== itemId));  };
+    setCartItems(itemId)
+  }
   const removeAllFromCartHandler = () => {
     setCartItems([]);
   };
