@@ -14,7 +14,7 @@ const CartContextProvider = (props) => {
 
   useEffect(()=>{
     const loadItemsHandler = async() => {
-      const crudURL = `https://crudcrud.com/api/93d06ce5cbaa4585ba29b077417bf667/${userEmail}`;
+      const crudURL = `https://crudcrud.com/api/1a676d0347de4e1580284383a63c7bb4/${userEmail}`;
       try {
         const response = await fetch(crudURL)
         const data = await response.json();
